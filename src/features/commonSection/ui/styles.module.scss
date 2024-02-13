@@ -1,0 +1,25 @@
+.commonSection {
+   height: 85vh;
+   padding-top: 13.6rem;
+   background-color: rgb(211, 211, 211);
+   background-position: 50% 50%;
+   background-size: cover;
+   background-repeat: no-repeat;
+
+   .btn {
+      display: inline-flex;
+      align-items: center;
+      column-gap: 10px;
+      svg {
+         width: 4.9rem;
+         height: 1.6rem;
+         path {
+            fill: $white-color;
+         }
+      }
+      span {
+         font-weight: 500;
+         color: $white-color;
+      }
+   }
+}
