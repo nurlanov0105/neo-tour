@@ -1,0 +1,140 @@
+form {
+   overflow-y: auto;
+
+   .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+
+      h2 {
+         font-size: 4.8rem;
+         font-weight: 700;
+      }
+
+      svg {
+         width: 3.6rem;
+         height: 3.6rem;
+         flex-shrink: 0;
+
+         path {
+            fill: $black-color;
+         }
+      }
+   }
+   .descr {
+      margin-bottom: 3.2rem;
+   }
+
+   label {
+      display: flex;
+      flex-direction: column;
+      row-gap: 4px;
+
+      font-size: 1.6rem;
+      color: $common-gray;
+
+      & {
+         margin-bottom: 2.4rem;
+      }
+   }
+
+   .commentInput {
+      input {
+         width: 100%;
+         height: 6.4rem;
+         padding: 0 20px;
+
+         border-radius: 10rem;
+         border: 1px solid #636363;
+         overflow: hidden;
+
+         &::placeholder {
+            font-size: 1.8rem;
+            color: $common-gray;
+         }
+      }
+   }
+
+   .counting {
+      margin-bottom: 4.8rem;
+      & > span {
+         display: block;
+         margin-bottom: 4px;
+         font-size: 1.6rem;
+         color: $common-gray;
+      }
+
+      .count {
+         display: inline-flex;
+         align-items: center;
+         column-gap: 20px;
+      }
+
+      .btns {
+         display: inline-flex;
+         align-items: center;
+         column-gap: 17px;
+
+         border-radius: 20px;
+         background: #f3f3f3;
+
+         button {
+            width: 4.2rem;
+            height: 4.8rem;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 16px;
+            background: #897cff;
+
+            svg {
+               width: 20px;
+               height: 20px;
+               flex-shrink: 0;
+
+               path {
+                  stroke: $white-color;
+                  fill: $white-color;
+               }
+            }
+
+            transition: background-color 0.15s ease-in-out;
+
+            &:hover,
+            &:active {
+               background-color: #b4b0da;
+            }
+
+            &:disabled {
+               background-color: #b4b0da;
+               cursor: default;
+            }
+         }
+
+         span {
+            font-size: 2rem;
+            font-weight: 700;
+         }
+      }
+   }
+
+   .people {
+      display: inline-flex;
+      align-items: center;
+      column-gap: 7px;
+      svg {
+         width: 24px;
+         height: 24px;
+         path {
+            fill: $black-color;
+         }
+      }
+   }
+
+   & > button {
+      width: 100%;
+   }
+}

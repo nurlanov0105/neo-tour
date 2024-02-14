@@ -2,7 +2,7 @@ import { Review } from '@/entities/review';
 import styles from './styles.module.scss';
 import reviewImg from '@/shared/assets/imgs/detailsPage/avatar.jpg';
 
-const PlaceInfo = () => {
+const PlaceInfo = ({ onBtnBook }) => {
    return (
       <section className={styles.place}>
          <div className='container'>
@@ -31,7 +31,9 @@ const PlaceInfo = () => {
                   ))}
                </div>
             </div>
-            <button className='btn'>Book now</button>
+            <button onClick={onBtnBook} className='btn'>
+               Book now
+            </button>
          </div>
       </section>
    );
