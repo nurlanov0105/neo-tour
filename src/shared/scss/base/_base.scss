@@ -72,3 +72,8 @@ body {
       font-weight: 700;
    }
 }
+
+/* Utility */
+::-webkit-scrollbar {
+   display: none;
+}

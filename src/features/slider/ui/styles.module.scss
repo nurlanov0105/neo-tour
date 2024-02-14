@@ -1,4 +1,5 @@
 .slider {
+   width: 100%;
    .row {
       display: flex;
       align-items: center;
@@ -31,6 +32,35 @@
                fill: $black-color;
             }
          }
+
+         transition: background-color 0.15s ease-in-out;
+
+         &:hover,
+         &:active {
+            background-color: #b2aafd;
+
+            svg {
+               path {
+                  fill: $white-color;
+               }
+            }
+         }
+
+         &:disabled {
+            background-color: #f6f5f5;
+            cursor: default;
+
+            &:hover,
+            &:active {
+               background-color: #f6f5f5;
+
+               svg {
+                  path {
+                     fill: $black-color;
+                  }
+               }
+            }
+         }
       }
    }
 
@@ -40,44 +70,6 @@
    }
 }
 
-.carousel {
-   overflow: hidden;
-   width: 100%;
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   margin-top: 7.2rem;
-
-   .inner {
-      display: flex;
-      align-items: center;
-      column-gap: 2.4rem;
-
-      white-space: nowrap;
-      transition: transform 0.3s;
-      margin-bottom: 2rem;
-   }
-
-   .indicators {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      column-gap: 10px;
-   }
-
-   button {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-      background-color: #b9b1ff;
-      border-radius: 50%;
-      overflow: hidden;
-
-      transition: width 0.15s ease-in-out;
-   }
-
-   .activeBtn {
-      width: 40px;
-      border-radius: 10px;
-   }
+.swiperWrapper {
+   margin-top: 6.4rem;
 }
