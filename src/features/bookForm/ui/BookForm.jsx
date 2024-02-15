@@ -1,23 +1,87 @@
 import React, { useState } from 'react';
 import styles from './styles.module.scss';
 
-import PhoneInput from 'react-phone-number-input';
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+// import InputMask from 'react-input-mask';
+
+import kgFlag from '@/shared/assets/imgs/form/KG.svg';
+import kzFlag from '@/shared/assets/imgs/form/KZ.svg';
+import ruFlag from '@/shared/assets/imgs/form/RU.svg';
+
+//  кастомный компонент флага
+function myFlagComponent({ country }) {
+   if (country === 'KG') {
+      return <img src={kgFlag.default || kgFlag} />;
+   } else if (country === 'KZ') {
+      return <img src={kzFlag.default || kzFlag} />;
+   } else if (country === 'RU') {
+      return <img src={ruFlag.default || ruFlag} />;
+   }
+}
 
 const BookForm = ({ setActive }) => {
-   const [phoneNumber, setPhoneNumber] = useState('');
+   const [phoneNumber, setPhoneNumber] = useState('+996');
+   // const [countryCode, setCountryCode] = useState('KG');
    const [comment, setComment] = useState('');
    const [peopleCount, setPeopleCount] = useState(1);
 
+   // Проверка валидности полей
+   const isFormValid = phoneNumber && isValidPhoneNumber(phoneNumber) && comment.trim() !== '';
+
+   const handlePhoneNumberChange = (value) => {
+      // Проверка на цифры
+      if (value && value.replace(/[^0-9+]/g, '') !== value) {
+         return;
+      }
+
+      // Установка значения по умолчанию, если поле ввода становится пустым
+      if (value === '') {
+         setPhoneNumber('+996');
+      } else {
+         setPhoneNumber(value);
+      }
+   };
+
+   // const handlePhoneNumberChange = (value) => {
+   //    setPhoneNumber(value);
+   //    if (value) {
+   //       if (value.startsWith('+996')) {
+   //          setCountryCode('KG');
+   //       } else if (value.startsWith('+7') && value.length === 2) {
+   //          setCountryCode('KZ');
+   //       } else if (value.startsWith('+7')) {
+   //          setCountryCode('RU');
+   //       }
+   //    }
+   // };
+
+   // const getMask = () => {
+   //    switch (countryCode) {
+   //       case 'KG':
+   //          return '+\\9\\96 99 999 9999';
+   //       case 'RU':
+   //          return '+7 (999) 999 99 99';
+   //       case 'KZ':
+   //          return '+7 (999) 999 99 99';
+   //       default:
+   //          return '';
+   //    }
+   // };
+
    const onSubmit = (e) => {
       e.preventDefault();
+      alert('Booked!');
+      setActive(false);
+      setPhoneNumber('+996');
+      setComment('');
    };
 
    return (
       <form onSubmit={onSubmit}>
          <div className={styles.row}>
             <h2>Info</h2>
-            <button onClick={() => setActive(false)}>
+            <button type='button' onClick={() => setActive(false)}>
                <svg>
                   <path d='M14.1149 12L23.5649 2.565C23.8474 2.28255 24.006 1.89946 24.006 1.5C24.006 1.10055 23.8474 0.717459 23.5649 0.435004C23.2825 0.152548 22.8994 -0.00613403 22.4999 -0.00613403C22.1005 -0.00613403 21.7174 0.152548 21.4349 0.435004L11.9999 9.885L2.56491 0.435004C2.28245 0.152548 1.89936 -0.00613368 1.49991 -0.00613368C1.10046 -0.00613367 0.717364 0.152548 0.434908 0.435004C0.152453 0.717459 -0.0062288 1.10055 -0.0062288 1.5C-0.00622881 1.89946 0.152453 2.28255 0.434908 2.565L9.88491 12L0.434908 21.435C0.294316 21.5744 0.182725 21.7403 0.106572 21.9231C0.0304187 22.1059 -0.00878906 22.302 -0.00878906 22.5C-0.00878906 22.698 0.0304187 22.8941 0.106572 23.0769C0.182725 23.2597 0.294316 23.4256 0.434908 23.565C0.574353 23.7056 0.740254 23.8172 0.923043 23.8933C1.10583 23.9695 1.30189 24.0087 1.49991 24.0087C1.69793 24.0087 1.89398 23.9695 2.07677 23.8933C2.25956 23.8172 2.42546 23.7056 2.56491 23.565L11.9999 14.115L21.4349 23.565C21.5744 23.7056 21.7403 23.8172 21.923 23.8933C22.1058 23.9695 22.3019 24.0087 22.4999 24.0087C22.6979 24.0087 22.894 23.9695 23.0768 23.8933C23.2596 23.8172 23.4255 23.7056 23.5649 23.565C23.7055 23.4256 23.8171 23.2597 23.8932 23.0769C23.9694 22.8941 24.0086 22.698 24.0086 22.5C24.0086 22.302 23.9694 22.1059 23.8932 21.9231C23.8171 21.7403 23.7055 21.5744 23.5649 21.435L14.1149 12Z' />
                </svg>
@@ -31,10 +95,13 @@ const BookForm = ({ setActive }) => {
          <label className={styles.tel}>
             <span>Phone number</span>
             <PhoneInput
+               // mask={getMask()}
                value={phoneNumber}
-               onChange={setPhoneNumber}
+               onChange={handlePhoneNumberChange}
                defaultCountry='KG'
                countries={['KG', 'RU', 'KZ']}
+               flagComponent={myFlagComponent}
+               international
             />
          </label>
 
@@ -83,7 +150,7 @@ const BookForm = ({ setActive }) => {
             </div>
          </div>
 
-         <button className='btn'>
+         <button className='btn' disabled={!isFormValid}>
             <span>Submit</span>
          </button>
       </form>
