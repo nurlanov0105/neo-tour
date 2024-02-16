@@ -33,14 +33,59 @@
             transform: translateX(10px);
          }
       }
+
+      .arrow-btn-mob {
+         display: none;
+      }
    }
 
-   &:hover,
-   &:active {
+   &:hover:not(:disabled),
+   &:active:not(:disabled) {
       background-color: #b4b0da;
    }
-
    &:disabled {
       background-color: #b4b0da;
+   }
+
+   @media (max-width: 900px) {
+      &:hover:not(:disabled) {
+         background-color: $primary-color;
+      }
+
+      &:active:not(:disabled) {
+         background-color: #b4b0da;
+      }
+      &--arrow {
+         &:hover {
+            svg {
+               transform: none;
+            }
+         }
+      }
+   }
+
+   @media (max-width: 600px) {
+      span {
+         font-weight: 500;
+      }
+      &--arrow {
+         padding: 17px 30px;
+         column-gap: 19px;
+         border-radius: 25px;
+         span {
+            font-size: 16px;
+         }
+         svg {
+            width: 38px;
+            height: 16px;
+         }
+
+         .arrow-btn-desc {
+            display: none;
+         }
+         .arrow-btn-mob {
+            display: block;
+         }
+      }
    }
 }

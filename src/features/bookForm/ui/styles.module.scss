@@ -21,6 +21,10 @@ form {
             fill: $black-color;
          }
       }
+
+      .crossMob {
+         display: none;
+      }
    }
    .descr {
       margin-bottom: 3.2rem;
@@ -34,9 +38,7 @@ form {
       font-size: 1.6rem;
       color: $common-gray;
 
-      & {
-         margin-bottom: 2.4rem;
-      }
+      margin-bottom: 2.4rem;
    }
 
    .commentInput {
@@ -45,7 +47,7 @@ form {
          height: 6.4rem;
          padding: 0 20px;
 
-         border-radius: 10rem;
+         border-radius: 100px;
          border: 1px solid #636363;
          overflow: hidden;
 
@@ -101,10 +103,18 @@ form {
                }
             }
 
+            .mobSvg {
+               display: none;
+            }
+
+            .mobSvgSm {
+               display: none;
+            }
+
             transition: background-color 0.15s ease-in-out;
 
-            &:hover,
-            &:active {
+            &:hover:not(:disabled),
+            &:active:not(:disabled) {
                background-color: #b4b0da;
             }
 
@@ -137,4 +147,169 @@ form {
    & > button {
       width: 100%;
    }
+
+   .mobController {
+      display: none;
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: 36px;
+      height: 5px;
+      border-radius: 100px;
+      background: rgba(60, 60, 67, 0.3);
+   }
+
+   @media (max-width: 600px) {
+      .mobController {
+         display: inline-block;
+      }
+      .row {
+         margin-bottom: 16px;
+         h2 {
+            font-size: 24px;
+         }
+
+         svg {
+            width: 24px;
+            height: 24px;
+         }
+
+         .crossDesc {
+            display: none;
+         }
+         .crossMob {
+            display: block;
+         }
+      }
+
+      .descr {
+         margin-bottom: 24px;
+         font-size: 14px;
+      }
+
+      label {
+         margin-bottom: 20px;
+
+         span {
+            font-size: 14px;
+         }
+      }
+
+      .commentInput {
+         input {
+            height: 50px;
+            padding: 0 16px;
+
+            &::placeholder {
+               font-size: 16px;
+               color: $common-gray;
+            }
+         }
+      }
+
+      .counting {
+         span {
+            font-size: 16px;
+         }
+
+         .btns {
+            button {
+               width: 29px;
+               height: 36px;
+
+               &:hover:not(:disabled) {
+                  background-color: #897cff;
+               }
+               &:active:not(:disabled) {
+                  background-color: #b4b0da;
+               }
+
+               svg {
+                  width: 16px;
+                  height: 16px;
+               }
+               .descSvg {
+                  display: none;
+               }
+               .mobSvg {
+                  display: block;
+               }
+               .mobSvgSm {
+                  display: block;
+                  width: 14px;
+                  height: 14px;
+               }
+            }
+
+            span {
+               font-size: 16px;
+               font-weight: 900;
+            }
+         }
+      }
+   }
+}
+.phoneInput {
+   display: flex;
+   align-items: center;
+   border: 1px solid rgba(99, 99, 99, 1);
+   border-radius: 50px;
+   width: 496px;
+   height: 64px;
+   margin: 0 0 24px 0;
+}
+.select {
+   /* border: 1px solid red; */
+   height: 64px;
+   width: 100px;
+   margin-left: 16px;
+   position: relative;
+   list-style: none;
+   box-sizing: border-box;
+   margin-right: 12px;
+}
+.optionWrap {
+   /* border: 1px solid green; */
+   height: 64px;
+   width: 90%;
+   display: grid;
+   margin-top: 14px;
+}
+.option {
+   width: 100%;
+   height: 36px;
+   /* border: 1px solid blue; */
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 0 10px;
+   /* padding: 5px; */
+   cursor: pointer;
+   background-color: white;
+}
+.optionFlag {
+   width: 24px;
+   height: 24px;
+}
+.optionText {
+   font-weight: 400;
+   font-size: 18px;
+   letter-spacing: 2px;
+   /* height: 64px; */
+}
+
+.commentaries {
+   border: 1px solid rgba(99, 99, 99, 1);
+   border-radius: 50px;
+   width: 444px;
+   height: 64px;
+   padding: 0 26px;
+   font-family: 'Satoshi', sans-serif;
+   font-weight: 400;
+   font-size: 18px;
+   color: rgba(20, 20, 20, 1);
+   outline: none;
+   margin: 0 0 24px 0;
 }

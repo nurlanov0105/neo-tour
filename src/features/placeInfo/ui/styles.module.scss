@@ -67,11 +67,91 @@
             fill: $black-color;
          }
       }
+      .locationMob {
+         display: none;
+      }
 
       span {
          font-size: 16px;
          font-style: normal;
          font-weight: 500;
+      }
+   }
+}
+
+@media (max-width: 1100px) {
+   .place {
+      margin-top: -10%;
+      padding: 24px 0 40px;
+   }
+
+   .heading {
+      h1 {
+         font-size: 4.4rem;
+         font-weight: 900;
+         color: #000;
+      }
+   }
+}
+
+@media (max-width: 600px) {
+   .place {
+      border-radius: 36px 36px 0px 0px;
+
+      .descr {
+         margin-bottom: 32px;
+         h3 {
+            margin-bottom: 12px;
+            font-size: 20px;
+         }
+
+         p {
+            font-size: 16px;
+         }
+      }
+      .reviews {
+         h3 {
+            margin-bottom: 16px;
+            font-size: 20px;
+            font-weight: 600;
+         }
+      }
+      button {
+         margin-top: 100px;
+         height: 50px;
+         font-size: 18px;
+      }
+   }
+   .heading {
+      row-gap: 12px;
+      margin-bottom: 32px;
+      h1 {
+         font-size: 24px;
+      }
+
+      .location {
+         display: inline-flex;
+         align-items: center;
+         column-gap: 8px;
+
+         svg {
+            width: 14px;
+            height: 14px;
+            path {
+               fill: $black-color;
+            }
+         }
+
+         .locationDesc {
+            display: none;
+         }
+         .locationMob {
+            display: block;
+         }
+
+         span {
+            font-size: 12px;
+         }
       }
    }
 }

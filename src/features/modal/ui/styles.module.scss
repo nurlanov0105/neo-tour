@@ -35,4 +35,14 @@
          transform: scale(1);
       }
    }
+
+   @media (max-width: 600px) {
+      align-items: end;
+      justify-content: baseline;
+
+      .content {
+         border-radius: 28px 28px 0 0;
+         padding: 20px;
+      }
+   }
 }

@@ -1,20 +1,26 @@
 import { RecommendCard } from '@/entities/recommendCard';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styles from './styles.module.scss';
-import image from '@/shared/assets/imgs/mini.jpg';
+import { useGetRecommendsPlacesQuery } from '@/entities/recommendCard/api/recommendsApi';
 
 const Recommends = () => {
-   const dispatch = useDispatch();
+   const { recommendedPlaces, limit, currentPage, totalPages } = useSelector(
+      (state) => state.recommends
+   );
+
+   const { isLoading, error } = useGetRecommendsPlacesQuery({ limit });
+
+   const recommendsPlaces = isLoading
+      ? [...Array(12)].map((_, i) => <RecommendCard key={i} isLoading={isLoading} />)
+      : recommendedPlaces.map((recomPlace, i) => (
+           <RecommendCard key={recomPlace.id} {...recomPlace} />
+        ));
 
    return (
       <section className='section'>
          <div className='container'>
             <h2 className={styles.title}>Recommended</h2>
-            <div className={styles.list}>
-               {[...Array(12)].map((card, i) => (
-                  <RecommendCard key={i} image={image} />
-               ))}
-            </div>
+            <div className={styles.list}>{recommendsPlaces}</div>
          </div>
       </section>
    );
