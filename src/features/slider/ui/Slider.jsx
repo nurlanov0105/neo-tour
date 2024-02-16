@@ -1,19 +1,29 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useGetToursQuery } from '@/entities/discoverCard/api/toursApi';
 
 import { DiscoverCard } from '@/entities/discoverCard';
-import styles from './styles.module.scss';
-import image from '@/shared/assets/imgs/slider/01.jpg';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-// import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
+import { useSelector } from 'react-redux';
+
+import styles from './styles.module.scss';
+import 'swiper/css';
 
 export const Slider = ({ children }) => {
-   const items = [{}, {}, {}, {}, {}, {}];
+   const { places, category } = useSelector((state) => state.discover);
+   const { isLoading } = useGetToursQuery({ category });
+
    const [isBeginning, setIsBeginning] = useState(true);
    const [isEnd, setIsEnd] = useState(false);
+
    const swiperRef = useRef(null);
+
+   useEffect(() => {
+      if (swiperRef.current) {
+         swiperRef.current.slideTo(0);
+      }
+   }, [category]);
 
    const onSwiper = (swiper) => {
       swiperRef.current = swiper;
@@ -31,6 +41,18 @@ export const Slider = ({ children }) => {
          return '<span class="' + className + '">' + '</span>';
       },
    };
+
+   const readyPlaces = isLoading
+      ? [...Array(4)].map((_, i) => (
+           <SwiperSlide key={i}>
+              <DiscoverCard key={i} isLoading={isLoading} />
+           </SwiperSlide>
+        ))
+      : places.map((tourPlace, i) => (
+           <SwiperSlide key={i}>
+              <DiscoverCard key={tourPlace.id} {...tourPlace} />
+           </SwiperSlide>
+        ));
 
    return (
       <div className={styles.slider}>
@@ -55,16 +77,22 @@ export const Slider = ({ children }) => {
          <div className={styles.swiperWrapper}>
             <Swiper
                onSwiper={onSwiper}
-               spaceBetween={24}
-               slidesPerView={3}
-               // pagination={pagination}
-               // modules={[Pagination]}
-            >
-               {items.map((_, i) => (
-                  <SwiperSlide key={i}>
-                     <DiscoverCard key={i} image={image} />
-                  </SwiperSlide>
-               ))}
+               slidesPerView='auto'
+               pagination={pagination}
+               modules={[Pagination]}
+               breakpoints={{
+                  0: {
+                     spaceBetween: 12,
+                  },
+
+                  900: {
+                     spaceBetween: 20,
+                  },
+                  1100: {
+                     spaceBetween: 24,
+                  },
+               }}>
+               {readyPlaces}
             </Swiper>
          </div>
       </div>

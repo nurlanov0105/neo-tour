@@ -10,6 +10,11 @@
    overflow: hidden;
 }
 
+.PhoneInputInput {
+   font-size: 18px;
+   font-weight: 400;
+}
+
 .PhoneInputCountry {
    display: flex;
    align-items: center;
@@ -54,5 +59,16 @@
 .PhoneInputCountrySelect {
    option:first-child {
       display: none;
+   }
+}
+
+@media (max-width: 600px) {
+   .PhoneInput {
+      height: 50px;
+      padding: 0 16px;
+   }
+
+   .PhoneInputInput {
+      font-size: 16px;
    }
 }

@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toursApi } from '../api/toursApi';
 
 const initialState = {
-   cards: [],
+   places: [],
    category: 'Popular',
 };
 
@@ -12,6 +13,11 @@ const discoverSlice = createSlice({
       addCategory: (state, action) => {
          state.category = action.payload;
       },
+   },
+   extraReducers: (builder) => {
+      builder.addMatcher(toursApi.endpoints.getTours.matchFulfilled, (state, action) => {
+         state.places = action.payload;
+      });
    },
 });
 
