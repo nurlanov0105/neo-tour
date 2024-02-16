@@ -1,18 +1,16 @@
 import styles from './styles.module.scss';
 
-const Review = ({ image }) => {
+const Review = ({ reviewObj }) => {
+   const { authorImage, authorName, review } = reviewObj;
    return (
       <div className={styles.review}>
          <div className={styles.row}>
             <div className={styles.img}>
-               <img src={image} alt='avatar img' />
+               <img src={authorImage} alt='avatar img' />
             </div>
-            <h6>Wanda Maximoff</h6>
+            <h6>{authorName}</h6>
          </div>
-         <div className={styles.descr}>
-            That was such a nice place. The most beautiful place I’ve ever seen. My advice to
-            everyone not to forget to take warm coat
-         </div>
+         <div className={styles.descr}>{review}</div>
       </div>
    );
 };

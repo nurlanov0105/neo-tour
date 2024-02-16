@@ -5,19 +5,34 @@ import { PlaceInfo } from '@/features/placeInfo';
 import { Modal } from '@/features/modal';
 
 import styles from './styles.module.scss';
-import bgImg from '@/shared/assets/imgs/detailsPage/bg.jpg';
 import { BookForm } from '@/features/bookForm';
+import { useParams } from 'react-router-dom';
+import { useGetPlaceDetailsQuery } from '@/features/placeInfo/api/detailsApi';
 
-const DetailsPage = () => {
+const DetailsPlace = () => {
+   const { id } = useParams();
+
+   const { data, isLoading } = useGetPlaceDetailsQuery({ id });
+
    const [modalAcitve, setModalActive] = useState(false);
    const onBtnBook = () => {
       setModalActive(true);
    };
-   return (
+   return isLoading ? (
+      <h2>Загрузка..</h2>
+   ) : (
       <>
-         <CommonSection bgImg={bgImg} />
+         <CommonSection bgImg={data[0].image} />
          <div className={styles.info}>
-            <PlaceInfo onBtnBook={onBtnBook} />
+            <PlaceInfo
+               onBtnBook={onBtnBook}
+               name={data[0].name}
+               description={data[0].description}
+               detailsId={data[0].id}
+               image={data[0].image}
+               category={data[0].category}
+               reviews={data[0].reviews}
+            />
          </div>
          <Modal active={modalAcitve} setActive={setModalActive}>
             <BookForm setActive={setModalActive} />
@@ -26,4 +41,4 @@ const DetailsPage = () => {
    );
 };
 
-export default DetailsPage;
+export default DetailsPlace;
