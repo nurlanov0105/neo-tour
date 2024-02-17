@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom';
 import { useGetPlaceDetailsQuery } from '@/features/placeInfo/api/detailsApi';
 import { BookedAlert, NotBookedAlert } from '@/entities/alerts';
 import { useSelector } from 'react-redux';
-import DetailsSkeleton from '@/shared/ui/detailsSkeleton/DetailsSkeleton';
+import DetailsSkeleton from '@/shared/ui/DetailsSkeleton/DetailsSkeleton';
 
 const DetailsPlace = () => {
    const { id } = useParams();
