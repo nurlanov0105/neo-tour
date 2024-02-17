@@ -8,6 +8,8 @@ import 'react-phone-number-input/style.css';
 import kgFlag from '@/shared/assets/imgs/form/KG.svg';
 import kzFlag from '@/shared/assets/imgs/form/KZ.svg';
 import ruFlag from '@/shared/assets/imgs/form/RU.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTour } from '../model/bookingsSlice';
 
 //  кастомный компонент флага
 function myFlagComponent({ country }) {
@@ -20,7 +22,9 @@ function myFlagComponent({ country }) {
    }
 }
 
-const BookForm = ({ setActive }) => {
+const BookForm = ({ data, setActive, setBookedAlert }) => {
+   const dispatch = useDispatch();
+
    const [phoneNumber, setPhoneNumber] = useState('+996');
    // const [countryCode, setCountryCode] = useState('KG');
    const [comment, setComment] = useState('');
@@ -69,12 +73,17 @@ const BookForm = ({ setActive }) => {
       }
    };
 
+   const booking = () => {
+      dispatch(addTour({ ...data, comment, peopleCount }));
+      setBookedAlert(true);
+   };
+
    const onSubmit = (e) => {
       e.preventDefault();
-      alert('Booked!');
       setActive(false);
       setPhoneNumber('+996');
       setComment('');
+      booking();
    };
 
    return (

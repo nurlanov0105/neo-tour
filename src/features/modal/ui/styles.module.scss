@@ -25,6 +25,11 @@
       transition: 0.15s;
 
       overflow-y: auto;
+
+      h2 {
+         font-size: 4rem;
+         font-weight: 700;
+      }
    }
 
    &.active {

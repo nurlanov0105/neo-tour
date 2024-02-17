@@ -4,6 +4,7 @@ import recommendsSlice from '@/entities/recommendCard/model/recommendsSlice';
 import { toursApi } from '@/entities/discoverCard/api/toursApi';
 import { recommendsApi } from '@/entities/recommendCard/api/recommendsApi';
 import { detailsApi } from '@/features/placeInfo/api/detailsApi';
+import bookingsSlice from '@/features/bookForm/model/bookingsSlice';
 
 export const store = configureStore({
    reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
       [toursApi.reducerPath]: toursApi.reducer,
       [recommendsApi.reducerPath]: recommendsApi.reducer,
       [detailsApi.reducerPath]: detailsApi.reducer,
+      bookings: bookingsSlice,
    },
 
    middleware: (getDefaultMiddleware) =>
