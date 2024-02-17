@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
-import Skeleton from '@/shared/ui/Skeleton/Skeleton';
+import Skeleton from '@/shared/ui/skeleton/Skeleton';
 
 export const RecommendCard = ({ id, name, image, category, isLoading }) => {
    return isLoading ? (
