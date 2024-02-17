@@ -29,7 +29,7 @@ const DetailsPlace = () => {
          setModalActive(true);
       }
    };
-   // skeleton
+
    return isLoading ? (
       <DetailsSkeleton />
    ) : (
