@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import discoverSlice from '@/entities/discoverCard/model/discoverSlice';
-import recommendsSlice from '@/entities/recommendCard/model/recommendsSlice';
-import { toursApi } from '@/entities/discoverCard/api/toursApi';
-import { recommendsApi } from '@/entities/recommendCard/api/recommendsApi';
-import { detailsApi } from '@/features/placeInfo/api/detailsApi';
-import bookingsSlice from '@/features/bookForm/model/bookingsSlice';
+import { recommendsApi, recommendsSlice } from '@/entities/recommendCard';
+import { discoverSlice, toursApi } from '@/entities/discoverCard';
+import { bookingsSlice } from '@/features/bookForm';
+import { detailsApi } from '@/features/placeInfo';
 
 export const store = configureStore({
    reducer: {

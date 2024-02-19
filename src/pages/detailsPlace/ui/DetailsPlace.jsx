@@ -1,13 +1,12 @@
 import { useState } from 'react';
 
 import { CommonSection } from '@/features/commonSection';
-import { PlaceInfo } from '@/features/placeInfo';
+import { PlaceInfo, useGetPlaceDetailsQuery } from '@/features/placeInfo';
 import { Modal } from '@/features/modal';
 
 import styles from './styles.module.scss';
 import { BookForm } from '@/features/bookForm';
 import { useParams } from 'react-router-dom';
-import { useGetPlaceDetailsQuery } from '@/features/placeInfo/api/detailsApi';
 import { BookedAlert, NotBookedAlert } from '@/entities/alerts';
 import { useSelector } from 'react-redux';
 import DetailsSkeleton from '@/shared/ui/detailsSkeleton/DetailsSkeleton';
