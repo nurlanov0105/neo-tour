@@ -1,7 +1,6 @@
-import { RecommendCard } from '@/entities/recommendCard';
+import { RecommendCard, useGetRecommendsPlacesQuery } from '@/entities/recommendCard';
 import { useSelector } from 'react-redux';
 import styles from './styles.module.scss';
-import { useGetRecommendsPlacesQuery } from '@/entities/recommendCard/api/recommendsApi';
 
 const Recommends = () => {
    const { recommendedPlaces, limit, currentPage, totalPages } = useSelector(

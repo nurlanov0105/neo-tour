@@ -1,2 +1,3 @@
 import PlaceInfo from './ui/PlaceInfo';
-export { PlaceInfo };
+import { detailsApi, useGetPlaceDetailsQuery } from './api/detailsApi';
+export { PlaceInfo, detailsApi, useGetPlaceDetailsQuery };
