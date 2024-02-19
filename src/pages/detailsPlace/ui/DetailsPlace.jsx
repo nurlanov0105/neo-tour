@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { CommonSection } from '@/features/commonSection';
 import { PlaceInfo, useGetPlaceDetailsQuery } from '@/features/placeInfo';
@@ -13,12 +13,16 @@ import DetailsSkeleton from '@/shared/ui/detailsSkeleton/DetailsSkeleton';
 
 const DetailsPlace = () => {
    const { id } = useParams();
-   const { data, isLoading } = useGetPlaceDetailsQuery({ id });
+   const { data, isLoading, error } = useGetPlaceDetailsQuery({ id });
    const bookings = useSelector((state) => state.bookings.bookings);
 
    const [modalAcitve, setModalActive] = useState(false);
    const [bookedAlert, setBookedAlert] = useState(false);
    const [notBookedAlert, setNotBookedAlert] = useState(false);
+
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, []);
 
    const onBtnBook = () => {
       const isBooked = bookings.some((book) => book.id === data[0].id);
@@ -28,6 +32,15 @@ const DetailsPlace = () => {
          setModalActive(true);
       }
    };
+
+   if (error) {
+      console.log(error);
+      return (
+         <h2>
+            Ошибка при запросе данных. {error.status} {error.data.message}
+         </h2>
+      );
+   }
 
    return isLoading ? (
       <DetailsSkeleton />

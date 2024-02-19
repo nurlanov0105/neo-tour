@@ -9,11 +9,17 @@ const Recommends = () => {
 
    const { isLoading, error } = useGetRecommendsPlacesQuery({ limit });
 
-   const recommendsPlaces = isLoading
-      ? [...Array(12)].map((_, i) => <RecommendCard key={i} isLoading={isLoading} />)
-      : recommendedPlaces.map((recomPlace, i) => (
-           <RecommendCard key={recomPlace.id} {...recomPlace} />
-        ));
+   const recommendsPlaces = error ? (
+      <h3>
+         Ошибка при запросе данных. {error.status} {error.data.message}
+      </h3>
+   ) : isLoading ? (
+      [...Array(12)].map((_, i) => <RecommendCard key={i} isLoading={isLoading} />)
+   ) : (
+      recommendedPlaces.map((recomPlace, i) => (
+         <RecommendCard key={recomPlace.id} {...recomPlace} />
+      ))
+   );
 
    return (
       <section className='section'>

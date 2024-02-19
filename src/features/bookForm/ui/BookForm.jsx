@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
@@ -12,66 +12,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addTour } from '../model/bookingsSlice';
 
 //  кастомный компонент флага
+const flags = {
+   KG: kgFlag,
+   KZ: kzFlag,
+   RU: ruFlag,
+};
+
+const maxDigits = {
+   KG: 9,
+   KZ: 10,
+   RU: 10,
+};
+
 function myFlagComponent({ country }) {
-   if (country === 'KG') {
-      return <img src={kgFlag.default || kgFlag} />;
-   } else if (country === 'KZ') {
-      return <img src={kzFlag.default || kzFlag} />;
-   } else if (country === 'RU') {
-      return <img src={ruFlag.default || ruFlag} />;
-   }
+   const flag = flags[country];
+   return <img src={flag.default || flag} />;
 }
 
 const BookForm = ({ data, setActive, setBookedAlert }) => {
    const dispatch = useDispatch();
 
-   const [phoneNumber, setPhoneNumber] = useState('+996');
-   // const [countryCode, setCountryCode] = useState('KG');
+   const [phoneNumber, setPhoneNumber] = useState('');
    const [comment, setComment] = useState('');
    const [peopleCount, setPeopleCount] = useState(1);
 
    // Проверка валидности полей
    const isFormValid = phoneNumber && isValidPhoneNumber(phoneNumber) && comment.trim() !== '';
-
-   const handlePhoneNumberChange = (value) => {
-      // Проверка на цифры
-      if (value && value.replace(/[^0-9+]/g, '') !== value) {
-         return;
-      }
-
-      // Установка значения по умолчанию, если поле ввода становится пустым
-      if (value === '') {
-         setPhoneNumber('+996');
-      } else {
-         setPhoneNumber(value);
-      }
-   };
-
-   // const handlePhoneNumberChange = (value) => {
-   //    setPhoneNumber(value);
-   //    if (value) {
-   //       if (value.startsWith('+996')) {
-   //          setCountryCode('KG');
-   //       } else if (value.startsWith('+7') && value.length === 2) {
-   //          setCountryCode('KZ');
-   //       } else if (value.startsWith('+7')) {
-   //          setCountryCode('RU');
-   //       }
-   //    }
-   // };
-
-   const getMask = () => {
-      switch (countryCode) {
-         case 'KG':
-            return '+\\9\\96 99 999 9999';
-         case 'RU':
-            return '+7 (999) 999 99 99';
-         case 'KZ':
-            return '+7 (999) 999 99 99';
-         default:
-            return '';
-      }
-   };
 
    const booking = () => {
       dispatch(addTour({ ...data, comment, peopleCount }));
@@ -111,9 +77,8 @@ const BookForm = ({ data, setActive, setBookedAlert }) => {
          <label className={styles.tel}>
             <span>Phone number</span>
             <PhoneInput
-               // mask={getMask()}
                value={phoneNumber}
-               onChange={handlePhoneNumberChange}
+               onChange={setPhoneNumber}
                defaultCountry='KG'
                countries={['KG', 'RU', 'KZ']}
                flagComponent={myFlagComponent}
@@ -154,7 +119,7 @@ const BookForm = ({ data, setActive, setBookedAlert }) => {
                      </svg>
                   </button>
                   <span>{peopleCount}</span>
-                  <button type='button' disabled={peopleCount === 6} onClick={() => handleBtnRight}>
+                  <button type='button' disabled={peopleCount === 6} onClick={handleBtnRight}>
                      <svg className={styles.descSvg}>
                         <path d='M15.8335 9.16666H10.8335V4.16666C10.8335 3.94565 10.7457 3.73369 10.5894 3.57741C10.4331 3.42113 10.2212 3.33333 10.0002 3.33333C9.77915 3.33333 9.56719 3.42113 9.41091 3.57741C9.25463 3.73369 9.16683 3.94565 9.16683 4.16666V9.16666H4.16683C3.94582 9.16666 3.73385 9.25446 3.57757 9.41074C3.42129 9.56702 3.3335 9.77898 3.3335 9.99999C3.3335 10.221 3.42129 10.433 3.57757 10.5893C3.73385 10.7455 3.94582 10.8333 4.16683 10.8333H9.16683V15.8333C9.16683 16.0543 9.25463 16.2663 9.41091 16.4226C9.56719 16.5789 9.77915 16.6667 10.0002 16.6667C10.2212 16.6667 10.4331 16.5789 10.5894 16.4226C10.7457 16.2663 10.8335 16.0543 10.8335 15.8333V10.8333H15.8335C16.0545 10.8333 16.2665 10.7455 16.4227 10.5893C16.579 10.433 16.6668 10.221 16.6668 9.99999C16.6668 9.77898 16.579 9.56702 16.4227 9.41074C16.2665 9.25446 16.0545 9.16666 15.8335 9.16666Z' />
                      </svg>

@@ -11,7 +11,7 @@ import 'swiper/css';
 
 export const Slider = ({ children }) => {
    const { places, category } = useSelector((state) => state.discover);
-   const { isLoading } = useGetToursQuery({ category });
+   const { isLoading, error } = useGetToursQuery({ category });
 
    const [isBeginning, setIsBeginning] = useState(true);
    const [isEnd, setIsEnd] = useState(false);
@@ -41,17 +41,23 @@ export const Slider = ({ children }) => {
       },
    };
 
-   const readyPlaces = isLoading
-      ? [...Array(4)].map((_, i) => (
-           <SwiperSlide key={i}>
-              <DiscoverCard key={i} isLoading={isLoading} />
-           </SwiperSlide>
-        ))
-      : places.map((tourPlace, i) => (
-           <SwiperSlide key={i}>
-              <DiscoverCard key={tourPlace.id} {...tourPlace} />
-           </SwiperSlide>
-        ));
+   const readyPlaces = error ? (
+      <h3>
+         Ошибка при запросе данных. {error.status} {error.data.message}
+      </h3>
+   ) : isLoading ? (
+      [...Array(4)].map((_, i) => (
+         <SwiperSlide key={i}>
+            <DiscoverCard key={i} isLoading={isLoading} />
+         </SwiperSlide>
+      ))
+   ) : (
+      places.map((tourPlace, i) => (
+         <SwiperSlide key={i}>
+            <DiscoverCard key={tourPlace.id} {...tourPlace} />
+         </SwiperSlide>
+      ))
+   );
 
    const handlePrevBtn = () => swiperRef.current?.slidePrev();
    const handleNextBtn = () => swiperRef.current?.slideNext();
