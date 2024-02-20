@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import styles from '../styles.module.scss';
 import lockImg from '@/shared/assets/imgs/auth/lock.svg';
 import eyeImg from '@/shared/assets/imgs/auth/eye.svg';
 import eyeDisImg from '@/shared/assets/imgs/auth/eye-disable.svg';
 
-const PasswordCheck = () => {
+const PasswordCheck = ({ handlePsw }) => {
+   const [password, setPassword] = useState('');
+   const [confirmPassword, setConfirmPassword] = useState('');
+
+   const handlePswChange = (e) => setPassword(e.target.value);
+   const handleConfirmPswChange = (e) => setConfirmPassword(e.target.value);
+
+   const onSubmit = (e) => {
+      e.preventDefault();
+      if (password !== confirmPassword) {
+         alert('Пароли не совпадают!');
+      } else {
+         handlePsw(password);
+      }
+   };
+
    return (
-      <div className={styles.passForm}>
+      <form className={styles.passForm} onSubmit={onSubmit}>
          <div className={styles.passForm__top}>
             <img src={lockImg} className={styles.passForm__img} alt='lock img' />
             <h3 className={styles.passForm__title}>Придумайте пароль</h3>
@@ -20,6 +35,8 @@ const PasswordCheck = () => {
                   className={`${styles.form__input} ${styles.form__input_psw}`}
                   type='password'
                   placeholder='Пароль'
+                  value={password}
+                  onChange={handlePswChange}
                />
                <img
                   className={`${styles.form__eye} ${styles.eyeChoosen}`}
@@ -33,6 +50,8 @@ const PasswordCheck = () => {
                   className={`${styles.form__input} ${styles.form__input_psw}`}
                   type='password'
                   placeholder='Повторите пароль'
+                  value={confirmPassword}
+                  onChange={handleConfirmPswChange}
                />
                <img
                   className={`${styles.form__eye} ${styles.eyeChoosen}`}
@@ -45,7 +64,7 @@ const PasswordCheck = () => {
          <button className={`btn ${styles.btn}`}>
             <span>Далее</span>
          </button>
-      </div>
+      </form>
    );
 };
 
