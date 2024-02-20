@@ -78,6 +78,11 @@
 .btn {
    width: 100%;
    padding: 10px 32px !important;
+
+   &:disabled {
+      background-color: #b4b0da;
+      cursor: default;
+   }
 }
 
 .btnLight {

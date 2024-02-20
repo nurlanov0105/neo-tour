@@ -9,9 +9,8 @@ import ProtectedRoute from './ProtectedRoute';
 const Routers = () => {
    return (
       <Routes>
-         <Route path='/' element={<Main />} />
-
-         <Route path='*' element={<ProtectedRoute />}>
+         <Route path='/*' element={<ProtectedRoute />}>
+            <Route index element={<Main />} />
             <Route path='details-place/:id' element={<DetailsPlace />} />
          </Route>
 
