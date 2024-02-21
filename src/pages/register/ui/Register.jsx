@@ -41,6 +41,7 @@ const Register = () => {
             }
          } else {
             navigate('/login');
+            toast.success('Вы зарегистрировались!');
          }
       } catch (error) {
          switch (error.status) {

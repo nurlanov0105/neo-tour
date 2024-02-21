@@ -1,0 +1,139 @@
+.telForm {
+   max-width: 40rem;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-left: auto;
+   margin-right: auto;
+   color: #494949;
+
+   &__title {
+      margin-bottom: 4.2rem;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+   }
+
+   &__body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+   }
+
+   &__img {
+      max-width: 8rem;
+   }
+
+   &__subtitle {
+      margin-bottom: 1.2rem;
+      font-size: 2rem;
+      font-weight: 500;
+   }
+
+   &__descr {
+      margin-bottom: 2.4rem;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.2;
+      color: #c0c0c0;
+   }
+
+   &__box {
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+      margin-bottom: 5rem;
+   }
+
+   &__input {
+      max-width: 280px;
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.21;
+      letter-spacing: 0.36px;
+      color: #494949;
+   }
+}
+.btn {
+   display: flex;
+   height: 6.5rem;
+   justify-content: center;
+   align-items: center;
+
+   border-radius: 16px;
+   background: $primary-color;
+
+   color: #fff;
+   font-size: 16px;
+   font-weight: 700;
+
+   transition: background-color 0.15s ease-in-out;
+
+   &:hover:not(:disabled),
+   &:active:not(:disabled) {
+      background-color: #b4b0da;
+   }
+   &:disabled {
+      background-color: #b4b0da;
+   }
+
+   @media (max-width: 900px) {
+      &:hover:not(:disabled) {
+         background-color: $primary-color;
+      }
+
+      &:active:not(:disabled) {
+         background-color: #b4b0da;
+      }
+   }
+
+   @media (max-width: 600px) {
+      font-weight: 500;
+   }
+}
+
+.country {
+   display: block;
+   position: relative;
+}
+
+.country__flag {
+   display: inline-block;
+   width: 40px;
+   height: 40px;
+}
+
+.country__select {
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 1;
+
+   width: max-content;
+   padding: 3px 0;
+   display: flex;
+   flex-direction: column;
+   row-gap: 10px;
+
+   background-color: #f8f8f8;
+   border-radius: 5px;
+}
+.contry__option {
+   display: flex;
+   align-items: center;
+   column-gap: 20px;
+   cursor: pointer;
+   padding: 3px 10px;
+
+   img {
+      width: 24px;
+      height: 24px;
+   }
+
+   &:hover,
+   &:active {
+      background-color: #fff;
+   }
+}

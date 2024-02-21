@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LoginForm, setUser, useLoginMutation } from '@/features/auth';
 import styles from './styles.module.scss';
 import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Modal } from '@/features/modal';
+import { ProoveForm, TelForm } from '@/features/resetPassword';
 
 const Login = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
    const location = useLocation();
+   const [resetModal, setResetModal] = useState(false);
+   const [selectedTelForm, setSelectedTelForm] = useState(true);
+   const [tel, setTel] = useState('');
 
    const [login, { isLoading, error }] = useLoginMutation();
 
@@ -38,6 +43,7 @@ const Login = () => {
             dispatch(setUser(result));
             const redirectTo = location.state?.from || '/';
             navigate(redirectTo);
+            toast.success('Вы вошли в аккаунт!');
          }
       } catch (error) {
          switch (error.status) {
@@ -56,10 +62,18 @@ const Login = () => {
       }
    };
 
+   const handleTel = (tel) => {
+      setTel(tel);
+      console.log(tel);
+   };
+
    return (
       <div className={styles.content}>
          <h2>Логин</h2>
-         <LoginForm handleSubmit={handleSubmit} />
+         <LoginForm handleSubmit={handleSubmit} setResetModal={setResetModal} />
+         <Modal active={resetModal} setActive={setResetModal}>
+            {selectedTelForm ? <TelForm handleTel={handleTel} /> : <ProoveForm />}
+         </Modal>
       </div>
    );
 };

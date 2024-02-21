@@ -8,7 +8,7 @@ import styles from '../styles.module.scss';
 import eyeImg from '@/shared/assets/imgs/auth/eye.svg';
 import eyeDisImg from '@/shared/assets/imgs/auth/eye-disable.svg';
 
-const LoginForm = ({ handleSubmit }) => {
+const LoginForm = ({ handleSubmit, setResetModal }) => {
    const [showPassword, setShowPassword] = useState(false);
 
    const toggleShowPassword = () => {
@@ -30,6 +30,8 @@ const LoginForm = ({ handleSubmit }) => {
    const getEyeClass = (isShown) => {
       return `${styles.form__eye} ${isShown ? styles.eyeChoosen : ''}`;
    };
+
+   const handleActiveModal = () => setResetModal(true);
 
    return (
       <div className={styles.formWrapper}>
@@ -73,7 +75,9 @@ const LoginForm = ({ handleSubmit }) => {
                            />
                         </div>
                      </div>
-                     <Link className={styles.link}>Забыли пароль</Link>
+                     <span className={styles.link} onClick={handleActiveModal}>
+                        Забыли пароль
+                     </span>
 
                      <button
                         className={`btn ${styles.btn}`}
