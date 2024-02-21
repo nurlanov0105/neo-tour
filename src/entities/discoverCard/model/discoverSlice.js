@@ -17,6 +17,7 @@ const discoverSlice = createSlice({
    extraReducers: (builder) => {
       builder.addMatcher(toursApi.endpoints.getTours.matchFulfilled, (state, action) => {
          state.places = action.payload;
+         console.log(action.payload);
       });
    },
 });

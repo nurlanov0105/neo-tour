@@ -251,3 +251,66 @@ form {
       }
    }
 }
+
+.telBox {
+   display: flex;
+   height: 6.4rem;
+   padding: 10px 20px;
+   align-items: center;
+   column-gap: 10px;
+
+   border-radius: 10rem;
+   border: 1px solid #636363;
+   background: $white-color;
+}
+
+.country__row {
+   display: flex;
+   align-items: center;
+   column-gap: 8px;
+   cursor: pointer;
+}
+
+.country {
+   display: inline-block;
+   position: relative;
+}
+
+.country__flag {
+   display: inline-block;
+   width: 24px;
+   height: 24px;
+}
+
+.country__select {
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 1;
+
+   width: max-content;
+   padding: 3px 0;
+   display: flex;
+   flex-direction: column;
+   row-gap: 10px;
+
+   background-color: #f8f8f8;
+   border-radius: 5px;
+}
+.contry__option {
+   display: flex;
+   align-items: center;
+   column-gap: 20px;
+   cursor: pointer;
+   padding: 3px 10px;
+
+   .country__flag {
+      width: 24px;
+      height: 24px;
+   }
+
+   &:hover,
+   &:active {
+      background-color: #fff;
+   }
+}

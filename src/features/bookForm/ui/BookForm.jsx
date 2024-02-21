@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
+import InputMask from 'react-input-mask';
 
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
-import 'react-phone-number-input/style.css';
-// import InputMask from 'react-input-mask';
+import styles from './styles.module.scss';
 
 import kgFlag from '@/shared/assets/imgs/form/KG.svg';
 import kzFlag from '@/shared/assets/imgs/form/KZ.svg';
 import ruFlag from '@/shared/assets/imgs/form/RU.svg';
+import arrowImg from '@/shared/assets/imgs/form/arrow-down.svg';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { addTour } from '../model/bookingsSlice';
 
@@ -18,10 +18,10 @@ const flags = {
    RU: ruFlag,
 };
 
-const maxDigits = {
-   KG: 9,
-   KZ: 10,
-   RU: 10,
+const countryCodes = {
+   KG: '+996 (999) 999 999',
+   KZ: '+7 (999) 999 9999',
+   RU: '+7 (999) 999-99-99',
 };
 
 function myFlagComponent({ country }) {
@@ -32,24 +32,45 @@ function myFlagComponent({ country }) {
 const BookForm = ({ data, setActive, setBookedAlert }) => {
    const dispatch = useDispatch();
 
-   const [phoneNumber, setPhoneNumber] = useState('');
+   const [tel, setTel] = useState('');
+   const [country, setCountry] = useState('KG');
+   const [activeSelect, setActiveSelect] = useState(false);
    const [comment, setComment] = useState('');
    const [peopleCount, setPeopleCount] = useState(1);
 
-   // Проверка валидности полей
-   const isFormValid = phoneNumber && isValidPhoneNumber(phoneNumber) && comment.trim() !== '';
+   const onChangeTel = (e) => setTel(e.target.value);
+
+   const isValidNumber = (number, country, comment) => {
+      const format = countryCodes[country];
+      const digits = number.replace(/\D/g, '');
+      const requiredLength = format.replace(/\D/g, '').length;
+      return digits.length === requiredLength && comment !== '';
+   };
+
+   const isButtonDisabled = !isValidNumber(tel, country, comment);
+
+   const handleFlagClick = () => {
+      setActiveSelect(!activeSelect);
+      setCountry('KG');
+   };
+
+   const handleOptionClick = (countryCode) => {
+      setCountry(countryCode);
+      setActiveSelect(false);
+      setTel('');
+   };
 
    const booking = () => {
-      dispatch(addTour({ ...data, comment, peopleCount }));
+      dispatch(addTour({ ...data, tel, comment, peopleCount }));
       setBookedAlert(true);
    };
 
    const onSubmit = (e) => {
       e.preventDefault();
-      setActive(false);
-      setPhoneNumber('+996');
-      setComment('');
       booking();
+      setActive(false);
+      setTel('+996');
+      setComment('');
    };
 
    const handleBtnLeft = () => peopleCount > 1 && setPeopleCount(peopleCount - 1);
@@ -74,17 +95,50 @@ const BookForm = ({ data, setActive, setBookedAlert }) => {
             and select the number of people for the reservation
          </p>
 
-         <label className={styles.tel}>
+         <div className={styles.tel}>
             <span>Phone number</span>
-            <PhoneInput
-               value={phoneNumber}
-               onChange={setPhoneNumber}
-               defaultCountry='KG'
-               countries={['KG', 'RU', 'KZ']}
-               flagComponent={myFlagComponent}
-               international
-            />
-         </label>
+            <div className={styles.telBox}>
+               <div className={styles.country}>
+                  <div className={styles.country__row} onClick={handleFlagClick}>
+                     <img src={flags[country]} alt='flag' className={styles.country__flag} />
+                     <img src={arrowImg} className={styles.country__arrow} alt='' />
+                  </div>
+
+                  {activeSelect ? (
+                     <div className={styles.country__select}>
+                        <div
+                           className={styles.contry__option}
+                           onClick={() => handleOptionClick('KG')}>
+                           <img src={kgFlag} alt='flag' className={styles.country__select__flag} />
+                           <span>+996</span>
+                        </div>
+                        <div
+                           className={styles.contry__option}
+                           onClick={() => handleOptionClick('KZ')}>
+                           <img src={kzFlag} alt='flag' className={styles.country__select__flag} />
+                           <span>+7</span>
+                        </div>
+                        <div
+                           className={styles.contry__option}
+                           onClick={() => handleOptionClick('RU')}>
+                           <img src={ruFlag} alt='flag' className={styles.country__select__flag} />
+                           <span>+7</span>
+                        </div>
+                     </div>
+                  ) : (
+                     ''
+                  )}
+               </div>
+               <InputMask
+                  mask={countryCodes[country]}
+                  className={styles.telForm__input}
+                  placeholder={countryCodes[country]}
+                  value={tel}
+                  onChange={onChangeTel}>
+                  {(inputProps) => <input {...inputProps} type='tel' />}
+               </InputMask>
+            </div>
+         </div>
 
          <label className={styles.commentInput}>
             <span>Commentaries to trip</span>
@@ -137,7 +191,7 @@ const BookForm = ({ data, setActive, setBookedAlert }) => {
             </div>
          </div>
 
-         <button className='btn' disabled={!isFormValid}>
+         <button className='btn' disabled={isButtonDisabled}>
             <span>Submit</span>
          </button>
       </form>
