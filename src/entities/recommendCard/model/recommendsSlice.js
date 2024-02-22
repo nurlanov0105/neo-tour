@@ -16,10 +16,10 @@ const recommendsSlice = createSlice({
       builder.addMatcher(
          recommendsApi.endpoints.getRecommendsPlaces.matchFulfilled,
          (state, action) => {
-            state.recommendedPlaces = action.payload.items;
-            const { total_pages, current_page } = action.payload.meta;
-            state.totalPages = total_pages;
-            state.currentPage = current_page;
+            state.recommendedPlaces = action.payload;
+            // const { total_pages, current_page } = action.payload.meta;
+            // state.totalPages = total_pages;
+            // state.currentPage = current_page;
          }
       );
    },

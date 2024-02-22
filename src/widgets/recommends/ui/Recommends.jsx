@@ -3,11 +3,9 @@ import { useSelector } from 'react-redux';
 import styles from './styles.module.scss';
 
 const Recommends = () => {
-   const { recommendedPlaces, limit, currentPage, totalPages } = useSelector(
-      (state) => state.recommends
-   );
+   const { recommendedPlaces } = useSelector((state) => state.recommends);
 
-   const { isLoading, error } = useGetRecommendsPlacesQuery({ limit });
+   const { isLoading, error } = useGetRecommendsPlacesQuery({});
 
    const recommendsPlaces = error ? (
       <h3>
@@ -17,7 +15,7 @@ const Recommends = () => {
       [...Array(12)].map((_, i) => <RecommendCard key={i} isLoading={isLoading} />)
    ) : (
       recommendedPlaces.map((recomPlace, i) => (
-         <RecommendCard key={recomPlace.id} {...recomPlace} />
+         <RecommendCard key={recomPlace.tripId} {...recomPlace} />
       ))
    );
 

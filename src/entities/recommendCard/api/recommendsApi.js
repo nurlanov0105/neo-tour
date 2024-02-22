@@ -11,10 +11,10 @@ export const recommendsApi = createApi({
          query: (params) => {
             const { limit } = params;
             return {
-               url: 'recommended',
-               params: {
-                  limit,
-               },
+               url: 'api/trips/getByRecommended',
+               // params: {
+               //    limit,
+               // },
             };
          },
       }),
