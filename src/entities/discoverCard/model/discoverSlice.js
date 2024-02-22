@@ -3,7 +3,7 @@ import { toursApi } from '../api/toursApi';
 
 const initialState = {
    places: [],
-   category: 'Popular',
+   category: '',
 };
 
 const discoverSlice = createSlice({
@@ -17,7 +17,6 @@ const discoverSlice = createSlice({
    extraReducers: (builder) => {
       builder.addMatcher(toursApi.endpoints.getTours.matchFulfilled, (state, action) => {
          state.places = action.payload;
-         console.log(action.payload);
       });
    },
 });
