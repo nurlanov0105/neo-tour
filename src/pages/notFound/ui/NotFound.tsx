@@ -1,0 +1,8 @@
+import { FC } from 'react';
+import styles from './styles.module.scss';
+
+const NotFound: FC = () => {
+   return <div>NotFound</div>;
+};
+
+export default NotFound;
