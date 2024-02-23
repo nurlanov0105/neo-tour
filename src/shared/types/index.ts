@@ -25,3 +25,9 @@ export type DetailsPlaceType = {
    popular?: boolean;
    mostVisited?: boolean;
 };
+
+export type BookedCardType = DetailsPlaceType & {
+   comment: string;
+   tel: string;
+   peopleCount: number;
+};

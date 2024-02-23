@@ -9,23 +9,23 @@ import { useParams } from 'react-router-dom';
 import { BookedAlert, NotBookedAlert } from '@/entities/alerts';
 import DetailsSkeleton from '@/shared/ui/detailsSkeleton/DetailsSkeleton';
 import { useAppSelector } from '@/app/appStore';
-import { DetailsPlaceType } from '@/shared/types';
+import { BookedCardType } from '@/shared/types';
 
 const DetailsPlace = () => {
    const { id } = useParams();
    const { data, isLoading, error } = useGetPlaceDetailsQuery({ id });
    const bookings = useAppSelector((state) => state.bookings.bookings);
 
-   const [modalAcitve, setModalActive] = useState(false);
-   const [bookedAlert, setBookedAlert] = useState(false);
-   const [notBookedAlert, setNotBookedAlert] = useState(false);
+   const [modalAcitve, setModalActive] = useState<boolean>(false);
+   const [bookedAlert, setBookedAlert] = useState<boolean>(false);
+   const [notBookedAlert, setNotBookedAlert] = useState<boolean>(false);
 
    useEffect(() => {
       window.scrollTo(0, 0);
    }, []);
 
    const onBtnBook = () => {
-      const isBooked = bookings.some((book: DetailsPlaceType) => book.tripId === data.tripId);
+      const isBooked = bookings.some((book: BookedCardType) => book.tripId === data?.tripId);
       if (isBooked) {
          setNotBookedAlert(true);
       } else {
@@ -38,15 +38,15 @@ const DetailsPlace = () => {
       return (
          <h2>
             {/* @ts-ignore */}
-            Ошибка при запросе данных. {error.status} {error.data.message}
+            Ошибка при запросе данных. {error.status}
          </h2>
       );
    }
 
    return isLoading ? (
       <DetailsSkeleton />
-   ) : (
-      <>
+   ) : data ? (
+      <main>
          <CommonSection tripImage={data.tripImage} />
          <div>
             <PlaceInfo
@@ -70,7 +70,9 @@ const DetailsPlace = () => {
          <Modal active={notBookedAlert} setActive={setNotBookedAlert}>
             <NotBookedAlert setNotBookedAlert={setNotBookedAlert} />
          </Modal>
-      </>
+      </main>
+   ) : (
+      ''
    );
 };
 

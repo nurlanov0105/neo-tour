@@ -36,7 +36,7 @@ const Recommends: FC = () => {
    const recommendsPlaces = error ? (
       <h3>
          {/* @ts-ignore */}
-         Ошибка при запросе данных. {error.status} {error.data.message}
+         Ошибка при запросе данных. {error.status}
       </h3>
    ) : isLoading ? (
       [...Array(12)].map((_, i) => (

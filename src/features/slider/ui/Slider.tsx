@@ -19,8 +19,8 @@ export const Slider = ({ children }: Props) => {
    const { places, category } = useAppSelector((state) => state.discover);
    const { isLoading, error } = useGetToursQuery({ category });
 
-   const [isBeginning, setIsBeginning] = useState(true);
-   const [isEnd, setIsEnd] = useState(false);
+   const [isBeginning, setIsBeginning] = useState<boolean>(true);
+   const [isEnd, setIsEnd] = useState<boolean>(false);
 
    const swiperRef = useRef<SwiperClass | null>(null);
 
@@ -50,7 +50,7 @@ export const Slider = ({ children }: Props) => {
    const readyPlaces = error ? (
       <h3>
          {/* @ts-ignore */}
-         Ошибка при запросе данных. {error.status} {error.data.message}
+         Ошибка при запросе данных. {error.status}
       </h3>
    ) : isLoading ? (
       [...Array(4)].map((_, i: number) => (

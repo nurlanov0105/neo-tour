@@ -7,12 +7,12 @@ import { toast } from 'react-toastify';
 const Register: FC = () => {
    const navigate = useNavigate();
 
-   const [firstName, setFirstName] = useState('');
-   const [lastName, setLastName] = useState('');
-   const [email, setEmail] = useState('');
-   const [userImage, setUserImage] = useState('');
+   const [firstName, setFirstName] = useState<string>('');
+   const [lastName, setLastName] = useState<string>('');
+   const [email, setEmail] = useState<string>('');
+   const [userImage, setUserImage] = useState<string>('');
 
-   const [passSelected, setPassSelected] = useState(false);
+   const [passSelected, setPassSelected] = useState<boolean>(false);
 
    const [register] = useRegisterMutation();
 
@@ -102,11 +102,6 @@ const Register: FC = () => {
          ) : (
             <RegisterForm onNextClick={handleNextClick} />
          )}
-         {/* {passSelected && (
-            <span className={styles.content__link} onClick={handleBackClick}>
-               Вернуться назад
-            </span>
-         )} */}
       </div>
    );
 };

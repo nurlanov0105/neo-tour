@@ -1,8 +1,9 @@
 import { useAuth } from '@/shared/hooks/useAuth';
+import { FC } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
-const ProtectedRoute = () => {
+const ProtectedRoute: FC = () => {
    const { isAuth } = useAuth();
    const location = useLocation();
 

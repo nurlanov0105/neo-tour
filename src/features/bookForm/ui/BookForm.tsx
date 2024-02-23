@@ -37,11 +37,11 @@ type flagsType = keyof typeof flags;
 const BookForm: FC<Props> = ({ data, setActive, setBookedAlert }) => {
    const dispatch = useAppDispatch();
 
-   const [tel, setTel] = useState('');
-   const [country, setCountry] = useState('KG');
-   const [activeSelect, setActiveSelect] = useState(false);
-   const [comment, setComment] = useState('');
-   const [peopleCount, setPeopleCount] = useState(1);
+   const [tel, setTel] = useState<string>('');
+   const [country, setCountry] = useState<string>('KG');
+   const [activeSelect, setActiveSelect] = useState<boolean>(false);
+   const [comment, setComment] = useState<string>('');
+   const [peopleCount, setPeopleCount] = useState<number>(1);
 
    const inputRef = useRef(null);
 
@@ -68,6 +68,13 @@ const BookForm: FC<Props> = ({ data, setActive, setBookedAlert }) => {
    };
 
    const booking = () => {
+      // Сохранение в locale storage
+      const bookingsItem = localStorage.getItem('bookings');
+      const bookings = bookingsItem ? JSON.parse(bookingsItem) : [];
+      const newBooking = { ...data, tel, comment, peopleCount };
+      bookings.push(newBooking);
+      localStorage.setItem('bookings', JSON.stringify(bookings));
+
       dispatch(addTour({ ...data, tel, comment, peopleCount }));
       setBookedAlert(true);
    };
