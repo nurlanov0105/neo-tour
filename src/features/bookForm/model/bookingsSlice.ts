@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ReviewInterface } from '@/shared/types';
+// import { ReviewInterface } from '@/shared/types';
 
 // type BookingsAction = {
 //    id: number;
