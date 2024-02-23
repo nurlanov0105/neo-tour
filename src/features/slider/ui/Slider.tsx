@@ -42,7 +42,7 @@ export const Slider = ({ children }: Props) => {
 
    const pagination = {
       clickable: true,
-      renderBullet: function (className: string) {
+      renderBullet: function (_: number, className: string) {
          return '<span class="' + className + '">' + '</span>';
       },
    };
