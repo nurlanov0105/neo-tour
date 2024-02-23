@@ -1,7 +1,6 @@
 import { Header } from '@/widgets/header';
 import { Discover } from '@/widgets/discover';
 import { Recommends } from '@/widgets/recommends';
-import styles from './styles.module.scss';
 import { FC, useEffect } from 'react';
 
 const Main: FC = () => {

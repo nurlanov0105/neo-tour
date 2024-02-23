@@ -22,12 +22,12 @@ const countryCodes = {
 };
 
 type Props = {
-   handleTel: (tel: string) => void;
+   setSelectedTelForm: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type CountryCode = keyof typeof countryCodes;
 
-const TelForm: FC<Props> = ({ handleTel }) => {
+const TelForm: FC<Props> = ({ setSelectedTelForm }) => {
    const [tel, setTel] = useState('');
    const [country, setCountry] = useState('KG');
    const [activeSelect, setActiveSelect] = useState(false);
@@ -44,7 +44,7 @@ const TelForm: FC<Props> = ({ handleTel }) => {
 
    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      handleTel(tel);
+      setSelectedTelForm(false);
    };
 
    const handleFlagClick = () => {

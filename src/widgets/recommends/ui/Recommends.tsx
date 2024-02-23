@@ -3,16 +3,15 @@ import {
    setCurrentPage,
    useGetRecommendsPlacesQuery,
 } from '@/entities/recommendCard';
-import { useSelector } from 'react-redux';
 import styles from './styles.module.scss';
 import { FC } from 'react';
 import { CardType } from '@/shared/types';
 import { Pagination } from '@/features/pagination';
-import { useAppDispatch } from '@/app/appStore';
+import { useAppDispatch, useAppSelector } from '@/app/appStore';
 
 const Recommends: FC = () => {
    const dispatch = useAppDispatch();
-   const { recommendedPlaces, pageSize, currentPage, totalPages } = useSelector(
+   const { recommendedPlaces, pageSize, currentPage, totalPages } = useAppSelector(
       (state) => state.recommends
    );
 

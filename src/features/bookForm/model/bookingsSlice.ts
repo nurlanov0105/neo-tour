@@ -1,18 +1,18 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { ReviewInterface } from '@/shared/types';
 
-type BookingsAction = {
-   id: number;
-   name: string;
-   image: string;
-   category: string;
-   description: string;
-   reviews: ReviewInterface[];
+// type BookingsAction = {
+//    id: number;
+//    name: string;
+//    image: string;
+//    category: string;
+//    description: string;
+//    reviews: ReviewInterface[];
 
-   tel: string;
-   comment: string;
-   peopleCount: number;
-};
+//    tel: string;
+//    comment: string;
+//    peopleCount: number;
+// };
 
 const initialState = {
    bookings: [],

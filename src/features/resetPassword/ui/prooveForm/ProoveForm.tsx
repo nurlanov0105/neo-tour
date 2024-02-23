@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 const ProoveForm: FC = () => {
    return <div>ProoveForm</div>;
