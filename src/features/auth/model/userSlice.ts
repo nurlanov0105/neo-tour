@@ -1,9 +1,10 @@
 import { getUserFromLS } from '@/shared/utils/getUserFromLS';
 import { createSlice } from '@reduxjs/toolkit';
+import { LoginApiResponse } from './types';
 
 const { id, fullName, email, token, role } = getUserFromLS();
 
-const initialState = {
+const initialState: LoginApiResponse = {
    id,
    fullName,
    token,
@@ -23,11 +24,11 @@ const userSlice = createSlice({
          state.role = action.payload.role;
       },
       removeUser(state) {
-         state.id = null;
-         state.fullName = null;
-         state.email = null;
-         state.token = null;
-         state.role = null;
+         state.id = 0;
+         state.fullName = '';
+         state.email = '';
+         state.token = '';
+         state.role = '';
       },
    },
 });

@@ -1,0 +1,44 @@
+.card {
+   display: flex;
+   justify-content: space-between;
+   column-gap: 10px;
+   border: 1px solid $black-color;
+   padding: 12px;
+   background-color: $white-color;
+
+   &__img {
+      flex-shrink: 0;
+      width: 8rem;
+      height: 8rem;
+      object-fit: contain;
+   }
+
+   &__box {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+
+      h3 {
+         font-size: 2rem;
+         margin-bottom: 5px;
+      }
+   }
+
+   &__name {
+   }
+
+   &__descr {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+   }
+
+   &__item {
+   }
+
+   button {
+      flex-shrink: 0;
+   }
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
@@ -13,19 +13,19 @@ type Props = {
    setResetModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const LoginForm = ({ handleSubmit, setResetModal }: Props) => {
-   const [showPassword, setShowPassword] = useState(false);
+const validationSchema = Yup.object().shape({
+   email: Yup.string().email('Неверный формат Email').required('Обязательное поле'),
+   password: Yup.string()
+      .min(8, 'Минимальная длина пароля - 8 символов')
+      .required('Обязательное поле'),
+});
+
+const LoginForm: FC<Props> = ({ handleSubmit, setResetModal }) => {
+   const [showPassword, setShowPassword] = useState<boolean>(false);
 
    const toggleShowPassword = () => {
       setShowPassword(!showPassword);
    };
-
-   const validationSchema = Yup.object().shape({
-      email: Yup.string().email('Неверный формат Email').required('Обязательное поле'),
-      password: Yup.string()
-         .min(8, 'Минимальная длина пароля - 8 символов')
-         .required('Обязательное поле'),
-   });
 
    const inputPswClassnames = `${styles.form__input} ${styles.form__input_psw}`;
 

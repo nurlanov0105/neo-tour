@@ -1,0 +1,56 @@
+.profile {
+   height: 100vh;
+   background-color: #f0f0f0;
+
+   display: grid;
+   grid-template-columns: 35% 1fr;
+
+   &__content {
+      max-width: 696px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 15px 16px;
+      position: relative;
+   }
+
+   &__top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 3rem;
+   }
+
+   &__btn {
+      position: absolute;
+      top: 5px;
+      left: 0;
+
+      display: inline-flex;
+      align-items: center;
+      column-gap: 6px;
+      padding: 10px;
+
+      img {
+         width: 24px;
+         height: 24px;
+      }
+
+      span {
+         font-size: 18px;
+         color: $black-color;
+      }
+   }
+
+   &__title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #494949;
+   }
+
+   &__list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 15px;
+   }
+}

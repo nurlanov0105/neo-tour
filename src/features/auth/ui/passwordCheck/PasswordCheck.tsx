@@ -6,6 +6,10 @@ import lockImg from '@/shared/assets/imgs/auth/lock.svg';
 import eyeImg from '@/shared/assets/imgs/auth/eye.svg';
 import eyeDisImg from '@/shared/assets/imgs/auth/eye-disable.svg';
 
+type Props = {
+   handlePsw: (password: string) => void;
+};
+
 const validationSchema = Yup.object({
    password: Yup.string()
       .min(8, 'Пароль должен содержать не менее 8 символов')
@@ -15,13 +19,9 @@ const validationSchema = Yup.object({
       .required('Обязательное поле'),
 });
 
-type Props = {
-   handlePsw: (password: string) => void;
-};
-
 const PasswordCheck: FC<Props> = ({ handlePsw }) => {
-   const [showPassword, setShowPassword] = useState(false);
-   const [showConfPassword, setShowConfPassword] = useState(false);
+   const [showPassword, setShowPassword] = useState<boolean>(false);
+   const [showConfPassword, setShowConfPassword] = useState<boolean>(false);
 
    const toggleShowPassword = () => {
       setShowPassword(!showPassword);

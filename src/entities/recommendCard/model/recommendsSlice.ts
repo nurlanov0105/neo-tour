@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { recommendsApi } from '../api/recommendsApi';
 
-const initialState = {
+import { StateTypes } from './types';
+
+const initialState: StateTypes = {
    recommendedPlaces: [],
    pageSize: 12,
    currentPage: 1,

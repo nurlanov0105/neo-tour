@@ -1,21 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { ReviewInterface } from '@/shared/types';
+import { getBookingsFromLS } from '@/shared/utils/getBookingFromLS';
 
-// type BookingsAction = {
-//    id: number;
-//    name: string;
-//    image: string;
-//    category: string;
-//    description: string;
-//    reviews: ReviewInterface[];
-
-//    tel: string;
-//    comment: string;
-//    peopleCount: number;
-// };
+const { bookings } = getBookingsFromLS();
 
 const initialState = {
-   bookings: [],
+   bookings,
 };
 
 const booksSlice = createSlice({
@@ -23,8 +12,6 @@ const booksSlice = createSlice({
    initialState,
    reducers: {
       addTour: (state, action) => {
-         // @ts-ignore
-
          state.bookings.push(action.payload);
       },
    },

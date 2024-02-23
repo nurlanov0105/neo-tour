@@ -1,12 +1,16 @@
+import { FC } from 'react';
 import styles from './styles.module.scss';
 import personImg from '@/shared/assets/imgs/header/person.png';
 import mobBgImg from '@/shared/assets/imgs/header/mob-bg.jpeg';
-import { FC } from 'react';
+import { UserPanel } from '@/features/userPanel';
 
 const Header: FC = () => {
    return (
       <header className={`header ${styles.header}`}>
          <div className='container'>
+            <div className={styles.header__top}>
+               <UserPanel />
+            </div>
             <div className={styles.row}>
                <div className={styles.info}>
                   <h1>Winter Vacation Trips</h1>

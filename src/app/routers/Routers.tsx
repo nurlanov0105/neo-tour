@@ -6,6 +6,7 @@ import { Login } from '@/pages/login';
 import { Register } from '@/pages/register';
 import ProtectedRoute from './ProtectedRoute';
 import { FC } from 'react';
+import { Profile } from '@/pages/profile';
 
 const Routers: FC = () => {
    return (
@@ -13,6 +14,7 @@ const Routers: FC = () => {
          <Route path='/*' element={<ProtectedRoute />}>
             <Route index element={<Main />} />
             <Route path='details-place/:id' element={<DetailsPlace />} />
+            <Route path='profile' element={<Profile />} />
          </Route>
 
          <Route path='login' element={<Login />} />

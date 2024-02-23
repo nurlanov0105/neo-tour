@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { toursApi } from '../api/toursApi';
+import { StateTypes } from './types';
 
-const initialState = {
+const initialState: StateTypes = {
    places: [],
    category: 'getByPopular',
 };

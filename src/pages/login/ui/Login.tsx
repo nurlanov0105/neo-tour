@@ -11,16 +11,17 @@ const Login: FC = () => {
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
    const location = useLocation();
-   const [resetModal, setResetModal] = useState(false);
-   const [selectedTelForm, setSelectedTelForm] = useState(true);
+   const [resetModal, setResetModal] = useState<boolean>(false);
+   const [selectedTelForm, setSelectedTelForm] = useState<boolean>(true);
 
    const [login] = useLoginMutation();
 
    const handleSubmit = async (email: string, password: string) => {
       try {
          const result = await login({ email, password }).unwrap();
-
+         console.log(result);
          if (result.error) {
+            // @ts-ignore
             switch (result.status) {
                case 403:
                   toast.error('Доступ запрещен');
@@ -43,8 +44,8 @@ const Login: FC = () => {
                   console.error(result);
             }
          } else {
-            const { userId, fullName, email, token, role } = result;
-            const userJson = JSON.stringify({ userId, fullName, email, token, role });
+            const { id, fullName, email, token, role } = result;
+            const userJson = JSON.stringify({ id, fullName, email, token, role });
             localStorage.setItem('user', userJson);
 
             dispatch(setUser(result));

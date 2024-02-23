@@ -28,9 +28,9 @@ type Props = {
 type CountryCode = keyof typeof countryCodes;
 
 const TelForm: FC<Props> = ({ setSelectedTelForm }) => {
-   const [tel, setTel] = useState('');
-   const [country, setCountry] = useState('KG');
-   const [activeSelect, setActiveSelect] = useState(false);
+   const [tel, setTel] = useState<string>('');
+   const [country, setCountry] = useState<string>('KG');
+   const [activeSelect, setActiveSelect] = useState<boolean>(false);
    const onChangeTel = (e: React.ChangeEvent<HTMLInputElement>) => setTel(e.target.value);
 
    const isValidNumber = (number: string, country: CountryCode) => {
