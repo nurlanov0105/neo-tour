@@ -13,7 +13,6 @@ const Login: FC = () => {
    const location = useLocation();
    const [resetModal, setResetModal] = useState(false);
    const [selectedTelForm, setSelectedTelForm] = useState(true);
-   const [tel, setTel] = useState('');
 
    const [login] = useLoginMutation();
 
@@ -79,17 +78,12 @@ const Login: FC = () => {
       }
    };
 
-   const handleTel = (tel: string) => {
-      setTel(tel);
-      console.log(tel);
-   };
-
    return (
       <div className={styles.content}>
          <h2>Логин</h2>
          <LoginForm handleSubmit={handleSubmit} setResetModal={setResetModal} />
          <Modal active={resetModal} setActive={setResetModal}>
-            {selectedTelForm ? <TelForm handleTel={handleTel} /> : <ProoveForm />}
+            {selectedTelForm ? <TelForm setSelectedTelForm={setSelectedTelForm} /> : <ProoveForm />}
          </Modal>
       </div>
    );

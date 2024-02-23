@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './styles.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addCategory } from '@/entities/discoverCard';
 
 const categories = ['Popular', 'Featured', 'Most Visited', 'Europe', 'Asia'];
