@@ -15,6 +15,12 @@
    }
 }
 
+.paginationWrapper {
+   display: flex;
+   justify-content: center;
+   padding-top: 4rem;
+}
+
 @media (max-width: 600px) {
    .title {
       margin-bottom: 18px;
