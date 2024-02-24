@@ -53,4 +53,21 @@
       flex-direction: column;
       row-gap: 15px;
    }
+
+   &__user {
+      display: none;
+   }
+
+   @media (max-width: 900px) {
+      display: block;
+
+      &__user {
+         display: block;
+         text-align: right;
+      }
+
+      &__btn {
+         top: 35px;
+      }
+   }
 }

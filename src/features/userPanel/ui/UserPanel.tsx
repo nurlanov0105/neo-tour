@@ -10,11 +10,17 @@ type Props = {
 
 const UserPanel: FC<Props> = ({ isReverse }) => {
    const fullName = useAppSelector((state) => state.user.fullName);
+   const lastName = fullName.split(' ')[1];
 
    const classNames = `${styles.profile} ${isReverse ? styles.profile_reverse : ''}`;
-   return (
+   return isReverse ? (
+      <div className={classNames}>
+         <div className={styles.profile__name}>{lastName}</div>
+         <img src={userIcon} className={styles.profile__img} alt='user icon' />
+      </div>
+   ) : (
       <Link to='profile' className={classNames}>
-         <div className={styles.profile__name}>{fullName}</div>
+         <div className={styles.profile__name}>{lastName}</div>
          <img src={userIcon} className={styles.profile__img} alt='user icon' />
       </Link>
    );

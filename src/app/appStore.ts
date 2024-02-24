@@ -5,6 +5,7 @@ import { detailsApi } from '@/features/placeInfo';
 import { authApi } from '@/features/auth';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { rootReducer } from './appReducer';
+import { bookingApi } from '@/features/bookForm';
 
 export const store = configureStore({
    reducer: rootReducer,
@@ -14,7 +15,8 @@ export const store = configureStore({
          toursApi.middleware,
          recommendsApi.middleware,
          detailsApi.middleware,
-         authApi.middleware
+         authApi.middleware,
+         bookingApi.middleware
       ),
 });
 

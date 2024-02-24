@@ -10,6 +10,7 @@
       display: inline-flex;
       align-items: center;
       column-gap: 10px;
+      cursor: pointer;
       svg {
          width: 4.9rem;
          height: 1.6rem;
@@ -27,6 +28,8 @@
       display: none;
       align-items: center;
       column-gap: 4px;
+      cursor: pointer;
+
       svg {
          width: 24px;
          height: 24px;
