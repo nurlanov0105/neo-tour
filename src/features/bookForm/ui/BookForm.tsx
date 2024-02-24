@@ -8,10 +8,9 @@ import kzFlag from '@/shared/assets/imgs/form/KZ.svg';
 import ruFlag from '@/shared/assets/imgs/form/RU.svg';
 import arrowImg from '@/shared/assets/imgs/form/arrow-down.svg';
 
-import { useAppDispatch } from '@/app/appStore';
 import { DetailsPlaceType } from '@/shared/types';
 import { useBookingTourMutation } from '..';
-import useTourDates from '@/shared/hooks/useTourDates';
+// import useTourDates from '@/shared/hooks/useTourDates';
 
 type Props = {
    data: DetailsPlaceType;
