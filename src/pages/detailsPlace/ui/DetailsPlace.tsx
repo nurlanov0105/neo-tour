@@ -4,7 +4,7 @@ import { CommonSection } from '@/features/commonSection';
 import { PlaceInfo, useGetPlaceDetailsQuery } from '@/features/placeInfo';
 import { Modal } from '@/features/modal';
 
-import { BookForm } from '@/features/bookForm';
+import { BookForm, useGetBookingsQuery } from '@/features/bookForm';
 import { useParams } from 'react-router-dom';
 import { BookedAlert, NotBookedAlert } from '@/entities/alerts';
 import DetailsSkeleton from '@/shared/ui/detailsSkeleton/DetailsSkeleton';
@@ -14,6 +14,8 @@ import { BookedCardType } from '@/shared/types';
 const DetailsPlace = () => {
    const { id } = useParams();
    const { data, isLoading, error } = useGetPlaceDetailsQuery({ id });
+
+   useGetBookingsQuery({});
    const bookings = useAppSelector((state) => state.bookings.bookings);
 
    const [modalAcitve, setModalActive] = useState<boolean>(false);

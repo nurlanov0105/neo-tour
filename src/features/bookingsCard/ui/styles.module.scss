@@ -1,16 +1,22 @@
 .card {
    display: flex;
    justify-content: space-between;
+   align-items: center;
    column-gap: 10px;
-   border: 1px solid $black-color;
-   padding: 12px;
+   padding: 2rem;
    background-color: $white-color;
 
    &__img {
       flex-shrink: 0;
       width: 8rem;
       height: 8rem;
-      object-fit: contain;
+      object-fit: cover;
+   }
+
+   .card__content {
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
    }
 
    &__box {
@@ -25,6 +31,8 @@
    }
 
    &__name {
+      font-size: 2rem;
+      font-weight: 500;
    }
 
    &__descr {
@@ -38,7 +46,14 @@
    &__item {
    }
 
-   button {
+   .btn {
       flex-shrink: 0;
+      height: 5rem;
+
+      padding: 0 1rem;
+
+      span {
+         font-size: 1.8rem;
+      }
    }
 }
