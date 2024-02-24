@@ -57,9 +57,10 @@ NeoTour - это оптимизированное приложение, разр
 
 ![image](https://github.com/nurlanov0105/neo-tour/assets/126797112/eaf98132-8aa3-4d5c-b21a-515b0a860719)
 
+
 Страница регистрации.
 
-![Uploading image.png…]()
+![image](https://github.com/nurlanov0105/neo-tour/assets/126797112/78c5938c-ab6a-4993-bc9e-6bb768b28324)
 
 Дальше вы попадете на гланую страницу.
 
