@@ -12,7 +12,7 @@ import { Modal } from '@/features/modal';
 import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 import arrowLeftImg from '@/shared/assets/imgs/profile/arrow-left.svg';
-import { BookedCardType, DetailsPlaceType } from '@/shared/types';
+import { BookedCardType } from '@/shared/types';
 import { UserPanel } from '@/features/userPanel';
 
 const Profile: FC = () => {
