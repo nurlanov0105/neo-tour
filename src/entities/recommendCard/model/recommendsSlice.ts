@@ -22,9 +22,9 @@ const recommendsSlice = createSlice({
       builder.addMatcher(
          recommendsApi.endpoints.getRecommendsPlaces.matchFulfilled,
          (state, action) => {
-            state.recommendedPlaces = action.payload.tripResponseList;
-            state.totalPages = action.payload.pageSize;
-            state.currentPage = action.payload.currentPage;
+            state.recommendedPlaces = action.payload.items;
+            state.totalPages = action.payload.meta.total_pages;
+            state.currentPage = action.payload.meta.current_page;
          }
       );
    },

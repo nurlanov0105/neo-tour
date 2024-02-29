@@ -55,20 +55,13 @@ export const Slider = ({ children }: Props) => {
    ) : isLoading ? (
       [...Array(4)].map((_, i: number) => (
          <SwiperSlide key={i}>
-            <DiscoverCard
-               key={i}
-               isLoading={isLoading}
-               tripId={-1}
-               name=''
-               tripImage=''
-               category=''
-            />
+            <DiscoverCard key={i} isLoading={isLoading} id={-1} name='' image='' category='' />
          </SwiperSlide>
       ))
    ) : (
       places.map((tourPlace: CardType, i: number) => (
          <SwiperSlide key={i}>
-            <DiscoverCard key={tourPlace.tripId} {...tourPlace} />
+            <DiscoverCard key={tourPlace.id} {...tourPlace} />
          </SwiperSlide>
       ))
    );

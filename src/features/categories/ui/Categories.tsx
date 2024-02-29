@@ -6,11 +6,11 @@ import { addCategory } from '@/entities/discoverCard';
 const categories = ['Popular', 'Featured', 'Most Visited', 'Europe', 'Asia'];
 
 const endpointCategories = {
-   Popular: 'getByPopular',
-   'Most Visited': 'getByMostVisit',
-   Featured: 'getByFeatured',
-   Europe: 'getEuropeTrips',
-   Asia: 'getAsiaTrips',
+   Popular: 'Popular',
+   'Most Visited': 'Most Visited',
+   Featured: 'Featured',
+   Europe: 'Europe',
+   Asia: 'Asia',
 };
 
 export const Categories: FC = () => {

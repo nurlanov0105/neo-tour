@@ -21,7 +21,6 @@ const Login: FC = () => {
          const result = await login({ email, password }).unwrap();
          console.log(result);
          if (result.error) {
-            // @ts-ignore
             switch (result.status) {
                case 403:
                   toast.error('Доступ запрещен');
@@ -44,11 +43,12 @@ const Login: FC = () => {
                   console.error(result);
             }
          } else {
-            const { id, fullName, email, token, role } = result;
-            const userJson = JSON.stringify({ id, fullName, email, token, role });
+            const { id, fullName, email } = result.data;
+            const token = result.token;
+            const userJson = JSON.stringify({ id, fullName, email, token });
             localStorage.setItem('user', userJson);
 
-            dispatch(setUser(result));
+            dispatch(setUser({ id, fullName, email, token }));
             const redirectTo = location.state?.from || '/';
             navigate(redirectTo);
             toast.success('Вы вошли в аккаунт!');

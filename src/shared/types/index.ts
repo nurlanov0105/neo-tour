@@ -1,32 +1,30 @@
 export type CardType = {
-   tripId: number;
+   id: number;
    name: string;
-   tripImage: string;
+   image: string;
    category: string;
    isLoading: boolean;
 };
 
 export interface ReviewInterface {
-   fullName: string;
-   userImage: string;
-   comment: string;
+   authorName: string;
+   authorImage: string;
+   review: string;
 }
 
 export type DetailsPlaceType = {
-   tripId: number;
+   id: number;
+   parentId?: number;
    name: string;
-   tripImage: string;
-   place: string;
+   image: string;
+   category: string;
    description: string;
-   commentResponse: ReviewInterface[];
+   reviews: ReviewInterface[];
    onBtnBook: () => void;
-
-   continent?: boolean;
-   popular?: boolean;
-   mostVisited?: boolean;
 };
 
 export type BookedCardType = DetailsPlaceType & {
+   parentId: number;
    comment: string;
    tel: string;
    peopleCount: number;

@@ -13,7 +13,7 @@ const Routers: FC = () => {
       <Routes>
          <Route path='/*' element={<ProtectedRoute />}>
             <Route index element={<Main />} />
-            <Route path='details-place/:id' element={<DetailsPlace />} />
+            <Route path='details/:id' element={<DetailsPlace />} />
             <Route path='profile' element={<Profile />} />
          </Route>
 

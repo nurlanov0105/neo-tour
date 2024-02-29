@@ -17,11 +17,14 @@ export const detailsApi = createApi({
       },
    }),
    endpoints: (builder) => ({
-      getPlaceDetails: builder.query<DetailsPlaceType, GetDetailsArgs>({
+      getPlaceDetails: builder.query<[DetailsPlaceType], GetDetailsArgs>({
          query: (params) => {
             const { id } = params;
             return {
-               url: `api/trips/getTripById/${id}`,
+               url: 'details',
+               params: {
+                  id,
+               },
             };
          },
       }),

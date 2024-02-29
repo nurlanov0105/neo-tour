@@ -12,7 +12,7 @@ import { Modal } from '@/features/modal';
 import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 import arrowLeftImg from '@/shared/assets/imgs/profile/arrow-left.svg';
-import { DetailsPlaceType } from '@/shared/types';
+import { BookedCardType } from '@/shared/types';
 import { UserPanel } from '@/features/userPanel';
 
 const Profile: FC = () => {
@@ -38,10 +38,10 @@ const Profile: FC = () => {
       setModalActive(!modalAcitve);
    };
 
-   const handleDeleteClick = async (tripId: number) => {
+   const handleDeleteClick = async (id: number, parentId: number) => {
       try {
-         dispatch(deleteBooking(tripId));
-         const result = await deleteBookingApi({ tripId });
+         dispatch(deleteBooking(parentId));
+         const result = await deleteBookingApi({ id });
 
          if (result) {
             toast.success('Tour deleted!');
@@ -71,12 +71,13 @@ const Profile: FC = () => {
             </div>
 
             <div className={styles.profile__list}>
-               {bookings.map((bookedTour: DetailsPlaceType) => (
+               {bookings.map((bookedTour: BookedCardType) => (
                   <BookingsCard
-                     key={bookedTour.tripId}
-                     tripId={bookedTour.tripId}
+                     key={bookedTour.parentId}
+                     id={bookedTour.id}
+                     parentId={bookedTour.parentId}
                      name={bookedTour.name}
-                     tripImage={bookedTour.tripImage}
+                     image={bookedTour.image}
                      description={bookedTour.description}
                      handleDeleteClick={handleDeleteClick}
                   />

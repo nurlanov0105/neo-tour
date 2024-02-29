@@ -27,7 +27,9 @@ const DetailsPlace = () => {
    }, []);
 
    const onBtnBook = () => {
-      const isBooked = bookings.some((book: BookedCardType) => book.tripId === data?.tripId);
+      const isBooked = bookings.some(
+         (book: BookedCardType) => book.parentId === (data ? data[0].id : '')
+      );
       if (isBooked) {
          setNotBookedAlert(true);
       } else {
@@ -49,20 +51,20 @@ const DetailsPlace = () => {
       <DetailsSkeleton />
    ) : data ? (
       <main>
-         <CommonSection tripImage={data.tripImage} />
+         <CommonSection tripImage={data[0].image} />
          <div>
             <PlaceInfo
                onBtnBook={onBtnBook}
-               name={data.name}
-               description={data.description}
-               tripId={data.tripId}
-               tripImage={data.tripImage}
-               place={data.place}
-               commentResponse={data.commentResponse}
+               name={data[0].name}
+               description={data[0].description}
+               id={data[0].id}
+               image={data[0].image}
+               category={data[0].category}
+               reviews={data[0].reviews}
             />
          </div>
          <Modal active={modalAcitve} setActive={setModalActive}>
-            <BookForm data={data} setActive={setModalActive} setBookedAlert={setBookedAlert} />
+            <BookForm data={data[0]} setActive={setModalActive} setBookedAlert={setBookedAlert} />
          </Modal>
 
          {/* Alerts */}
