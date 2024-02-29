@@ -69,8 +69,11 @@ const BookForm: FC<Props> = ({ data, setActive, setBookedAlert }) => {
    const booking = async () => {
       try {
          const result = await bookinTour({
-            tripId: data.tripId,
+            parentId: data.id,
+            name: data.name,
+            description: data.description,
             comment,
+            image: data.image,
             peopleCount,
             dateFrom: '2024-02-24',
             dateTo: '2024-02-24',

@@ -21,7 +21,10 @@ export const toursApi = createApi({
          keepUnusedDataFor: 0,
          query: ({ category }) => {
             return {
-               url: `api/trips/${category}`,
+               url: `discover`,
+               params: {
+                  category,
+               },
             };
          },
       }),

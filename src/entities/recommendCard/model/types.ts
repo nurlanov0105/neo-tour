@@ -6,9 +6,8 @@ export type GetRecommendsArgs = {
 };
 
 export type GetFetchData = {
-   tripResponseList: CardType[];
-   pageSize: number;
-   currentPage: number;
+   items: CardType[];
+   meta: any;
 };
 
 export type StateTypes = {

@@ -40,18 +40,11 @@ const Recommends: FC = () => {
       </h3>
    ) : isLoading ? (
       [...Array(12)].map((_, i) => (
-         <RecommendCard
-            key={i}
-            isLoading={isLoading}
-            tripId={-1}
-            name=''
-            tripImage=''
-            category=''
-         />
+         <RecommendCard key={i} isLoading={isLoading} id={-1} name='' image='' category='' />
       ))
    ) : (
       recommendedPlaces.map((recomPlace: CardType) => (
-         <RecommendCard key={recomPlace.tripId} {...recomPlace} />
+         <RecommendCard key={recomPlace.id} {...recomPlace} />
       ))
    );
 

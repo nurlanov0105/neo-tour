@@ -14,7 +14,6 @@ export type LoginApiResponse = {
    fullName: string;
    token: string;
    email: string;
-   role: string;
    error?: any;
 };
 

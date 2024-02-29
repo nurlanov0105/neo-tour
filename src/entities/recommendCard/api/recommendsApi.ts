@@ -21,7 +21,11 @@ export const recommendsApi = createApi({
          query: (params) => {
             const { pageSize, currentPage } = params;
             return {
-               url: `api/trips/getByRecommended?pageSize=${pageSize}&&currentPage=${currentPage}`,
+               url: 'recommended?',
+               params: {
+                  limit: pageSize,
+                  page: currentPage,
+               },
             };
          },
       }),

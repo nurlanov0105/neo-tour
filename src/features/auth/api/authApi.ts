@@ -1,32 +1,31 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { LoginApiResponse, LoginParams, RegisterParams } from '../model/types';
 const BASE_URL = import.meta.env.VITE_TOURS_BASE_API_URL;
 
 export const authApi = createApi({
    reducerPath: 'authApi',
-   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+   baseQuery: fetchBaseQuery({
+      baseUrl: BASE_URL,
+   }),
    endpoints: (builder) => ({
-      register: builder.mutation<RegisterParams, RegisterParams>({
+      register: builder.mutation({
          query: (params) => {
-            const { firstName, lastName, email, userImage, password } = params;
+            const { firstName, lastName, email, password } = params;
             return {
-               url: 'api/users/signUp',
+               url: 'register',
                method: 'POST',
                body: {
-                  firstName,
-                  lastName,
+                  fullName: `${firstName} ${lastName}`,
                   email,
-                  userImage,
                   password,
                },
             };
          },
       }),
-      login: builder.mutation<LoginApiResponse, LoginParams>({
+      login: builder.mutation({
          query: (params) => {
             const { email, password } = params;
             return {
-               url: 'api/users/signIn',
+               url: 'auth',
                method: 'POST',
                body: {
                   email,
@@ -39,3 +38,4 @@ export const authApi = createApi({
 });
 
 export const { useRegisterMutation, useLoginMutation } = authApi;
+export const {} = authApi;

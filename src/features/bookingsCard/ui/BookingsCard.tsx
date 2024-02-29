@@ -2,24 +2,25 @@ import { FC } from 'react';
 import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 type Props = {
-   tripId: number;
+   id: number;
+   parentId: number;
    name: string;
-   tripImage: string;
+   image: string;
    description: string;
-   handleDeleteClick: (tripId: number) => void;
+   handleDeleteClick: (id: number, parentId: number) => void;
 };
 
-const BookingsCard: FC<Props> = ({ tripId, name, tripImage, description, handleDeleteClick }) => {
+const BookingsCard: FC<Props> = ({ id, parentId, name, image, description, handleDeleteClick }) => {
    const className = `btn ${styles.btn}`;
 
    const onDelete = () => {
-      handleDeleteClick(tripId);
+      handleDeleteClick(id, parentId);
    };
 
    return (
       <div className={styles.card}>
-         <Link to={`/details-place/${tripId}`} className={styles.card__content}>
-            <img src={tripImage} className={styles.card__img} alt='card img' />
+         <Link to={`/details/${parentId}`} className={styles.card__content}>
+            <img src={image} className={styles.card__img} alt='card img' />
 
             <div className={styles.card__box}>
                <h4 className={styles.card__name}>{name}</h4>

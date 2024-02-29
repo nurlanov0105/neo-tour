@@ -21,13 +21,13 @@ const booksSlice = createSlice({
       },
       deleteBooking: (state, action) => {
          state.bookings = state.bookings.filter(
-            (booking: DetailsPlaceType) => booking.tripId !== action.payload
+            (booking: DetailsPlaceType) => booking.parentId !== action.payload
          );
       },
    },
    extraReducers: (builder) => {
       builder.addMatcher(bookingApi.endpoints.getBookings.matchFulfilled, (state, action) => {
-         state.bookings = action.payload.filter((book: any) => book.tripId !== 0);
+         state.bookings = action.payload;
       });
    },
 });

@@ -19,7 +19,7 @@ export const bookingApi = createApi({
       getBookings: builder.query({
          query: () => {
             return {
-               url: `api/trips/getBookingTripsUser`,
+               url: `bookings`,
                method: 'GET',
             };
          },
@@ -27,11 +27,25 @@ export const bookingApi = createApi({
       }),
       bookingTour: builder.mutation({
          query: (params) => {
-            const { tripId, tel, comment, peopleCount, dateFrom, dateTo } = params;
+            const {
+               parentId,
+               name,
+               description,
+               image,
+               tel,
+               comment,
+               peopleCount,
+               dateFrom,
+               dateTo,
+            } = params;
             return {
-               url: `api/trips/${tripId}`,
+               url: `bookings`,
                method: 'POST',
                body: {
+                  parentId,
+                  name,
+                  description,
+                  image,
                   phoneNumber: tel,
                   wishesToTrip: comment,
                   userSum: peopleCount,
@@ -44,10 +58,10 @@ export const bookingApi = createApi({
       }),
       deleteBooking: builder.mutation({
          query: (params) => {
-            const { tripId } = params;
+            const { id } = params;
             return {
-               url: `api/trips/unBooking/${tripId}`,
-               method: 'POST',
+               url: `bookings/${id}`,
+               method: 'DELETE',
             };
          },
          invalidatesTags: ['Bookings'],

@@ -4,7 +4,7 @@ import { StateTypes } from './types';
 
 const initialState: StateTypes = {
    places: [],
-   category: 'getByPopular',
+   category: 'Popular',
 };
 
 const discoverSlice = createSlice({
